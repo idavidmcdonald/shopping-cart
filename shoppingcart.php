@@ -30,15 +30,9 @@ class ShoppingCart{
 					// Update quantity of item
 						$this -> updateItem($item, $this -> items[$id]['qty'] + 1);
 				} else {
-					// Get the item name and price
-						$name = $item -> getName();
-						$price = $item -> getPrice();
-
 					// Add item to cart
 						$this -> items[$id] = array('item' => $item,
-								                    'qty' => 1,
-								                    'name' => $name,
-								                    'price' => $price
+								                    'qty' => 1
 								                    );
 				}
 		}
@@ -74,11 +68,11 @@ class ShoppingCart{
 		}
 
 	// Function to calculate the total price of the shopping cart
-		public function calculateTotal(){
+		public function getTotal(){
 			$total = 0;
 
 			foreach ($items as $id) {
-							$total += $id['qty'] * $id['price'];
+							$total += $id['qty'] * $id['item'] -> getPrice();
 						}
 
 			return $total;			
