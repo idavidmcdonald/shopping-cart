@@ -6,6 +6,12 @@
 class ShoppingCart{ 
 	protected $items = array();
 
+	// Construct a new shopping cart
+		function __construct()
+			{
+				$this -> items = array();
+			}
+
 	// Function that returns a boolean if the shopping cart is empty/notempty
 		public function isEmpty(){
 			return (empty($this -> items));
@@ -19,13 +25,21 @@ class ShoppingCart{
 			// Throw an exception if there is no id
 				if (!$id) throw new Exception ('The cart requires item with unique ID values');
 
-			// Add or update item in cart
+			// Update or add item in cart
 				if (isset($this -> items[$id])) {
-					$this -> updateItem($item, $this -> items[$id]['qty'] + 1);
+					// Update quantity of item
+						$this -> updateItem($item, $this -> items[$id]['qty'] + 1);
 				} else {
-					$this -> items[$id] = array('item' => $item,
-							                    'qty' => 1
-							                    );
+					// Get the item name and price
+						$name = $item -> getName();
+						$price = $item -> getPrice();
+
+					// Add item to cart
+						$this -> items[$id] = array('item' => $item,
+								                    'qty' => 1,
+								                    'name' => $name,
+								                    'price' => $price
+								                    );
 				}
 		}
 
@@ -57,6 +71,18 @@ class ShoppingCart{
 				if (isset($this -> items[$id])) {
 					unset($this -> items[$id]);
 				}
+		}
+
+	// Function to calculate the total price of the shopping cart
+		public function calculateTotal(){
+			$total = 0;
+
+			foreach ($items as $id) {
+							$total += $id['qty'] * $id['price'];
+						}
+
+			return $total;			
+
 		}
 
 }
