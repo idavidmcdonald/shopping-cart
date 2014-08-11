@@ -3,8 +3,13 @@
 /**
 * 
 */
-class ShoppingCart{ 
-	protected $items = array();
+class ShoppingCart implements Countable, Iterator{ 
+	// The items in the shopping cart
+		protected $items = array();
+
+	// Variables for our iterator functions
+		protected $position = 0;
+		protected $ids = array();
 
 	// Construct a new shopping cart
 		function __construct()
@@ -34,6 +39,7 @@ class ShoppingCart{
 						$this -> items[$id] = array('item' => $item,
 								                    'qty' => 1
 								                    );
+						$this -> ids[] = $id;
 				}
 		}
 
@@ -65,6 +71,10 @@ class ShoppingCart{
 				if (isset($this -> items[$id])) {
 					unset($this -> items[$id]);
 				}
+
+				$index = array_search($id, $this -> ids);
+				unset($this -> ids[$index]);
+				$this -> ids = array_values($this -> ids);
 		}
 
 	// Function to calculate the total price of the shopping cart
@@ -77,13 +87,39 @@ class ShoppingCart{
 						}
 
 			return $total;			
-
 		}
 
-	// Function
-		public function count(){
-			return count($this -> items);
-		}
+	// $items array is protected so we implement Countable and Iterable interfaces for commonly used methods
+		// Countable interface: Function to count number of items in our cart
+			public function count(){
+				return count($this -> items);
+			}
+
+		// Iterator interface: Function to return the key of the current element
+			public function key(){
+				return $this -> position;
+			}
+
+		// Iterator interface: Function to move forward to the next element
+			public function next(){
+				$this -> position++;
+			}
+
+		// Iterator interface: Function to rewind the iterator to the first element
+			public function rewind(){
+				$this -> position = 0;
+			}
+
+		// Iterator interface: Function to check if the current position is valid
+			public function valid(){
+				return (isset($this -> ids[$this -> position]));
+			}
+
+		// Iterable interface: Function to return the current element
+			public function current(){
+				$index = $this -> ids[$this -> position];
+				return $this -> items[$index];
+			}
 
 }
 
