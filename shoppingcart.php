@@ -71,12 +71,18 @@ class ShoppingCart{
 		public function getTotal(){
 			$total = 0;
 
-			foreach ($items as $id) {
-							$total += $id['qty'] * $id['item'] -> getPrice();
+			foreach ($this -> items as $id) {
+							$subtotal = $id['qty'] * ($id['item'] -> getPrice());
+							$total += $subtotal;
 						}
 
 			return $total;			
 
+		}
+
+	// Function
+		public function count(){
+			return count($this -> items);
 		}
 
 }
