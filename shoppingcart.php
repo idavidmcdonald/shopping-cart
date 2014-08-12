@@ -115,7 +115,7 @@ class ShoppingCart implements Countable, Iterator{
 				return (isset($this -> ids[$this -> position]));
 			}
 
-		// Iterable interface: Function to return the current element
+		// Iterable interface: Function to return the current item
 			public function current(){
 				$index = $this -> ids[$this -> position];
 				return $this -> items[$index];
