@@ -16,27 +16,37 @@ require "item.php";
 	$i2 = new Item(49, "Spare tyre", 46.99);
 	$i3 = new Item(22, "Wrench", 3.00);
 
-// Add some items to our cart
-	$cart -> addItem($i2);
-	$cart -> addItem($i3);
-	$cart -> addItem($i3);
-	$cart -> addItem($i1);
-	$cart -> deleteItem($i1);
-
 // Output cart contents
 	if (!$cart -> isEmpty()) {
 		// Cart heading
-			echo '<h2>Cart Contents (' . count($cart) . ' items)</h2>';
+			?>
+				<h2>Cart Contents (<?= count($cart) ?> items)</h2>
 
+				<table>
+					<tr>
+						<th>Item</th>
+						<th>Price</th>
+						<th>Quantity</th>
+					</tr>
+
+			<?
 		// Cart contents
 			foreach ($cart as $arr) {
 		        $item = $arr['item'];
-		        printf('<p><strong>%s</strong>: %d @ $%0.2f each.<p>', $item->getName(), $arr['qty'], $item->getPrice());
+		        
+		        // Output item row
+			        echo "<tr>";
+			        printf('<td><strong>%s</strong>: </td>', $item->getName());
+			        printf('<td>$%0.2f</td>', $item->getPrice());
+			        printf('<td>%d</td>', $arr['qty']);
+			        echo "</tr>";
 		    }
 
 		// Cart total
-		    printf('<p><strong>Total</strong>: $%0.2f', $cart -> getTotal());
-
+		    echo "<tr>";
+		    printf('<td><strong>Total</strong>: $%0.2f </td>', $cart -> getTotal());
+		    echo "</tr>";
+		    echo "</table>";		    
 	} else {
 		// Empty cart heading
 			echo "<h2>Cart is empty</h2>";

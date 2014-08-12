@@ -43,6 +43,21 @@ class ShoppingCart implements Countable, Iterator{
 				}
 		}
 
+	// Function to remove one of an item from the shopping card	
+		public function removeItem(Item $item){
+			// Get the item id
+				$id = $item -> getId();
+
+			// Throw an exception if there is no id
+				if (!$id) throw new Exception ('The cart requires item with unique ID values');
+
+			// Remove item from cart
+				if (isset($this -> items[$id])) {
+					// Update quantity of item
+						$this -> updateItem($item, $this -> items[$id]['qty'] - 1);
+				} 
+		}
+
 	// Function to update the quantity of an item in the shopping cart
 		public function updateItem(Item $item, $qty){
 			// Get the item id
@@ -59,7 +74,7 @@ class ShoppingCart implements Countable, Iterator{
 				}
 		}
 
-	// Function to remove an item from the shopping cart
+	// Function to remove all of an item from the shopping cart
 		public function deleteItem(Item $item){
 			// Get the item id
 				$id = $item -> getId();
