@@ -92,7 +92,13 @@ class ShoppingCart implements Countable, Iterator{
 	// $items array is protected so we implement Countable and Iterable interfaces for commonly used methods
 		// Countable interface: Function to count number of items in our cart
 			public function count(){
-				return count($this -> items);
+				$count = 0;
+
+				foreach ($this -> items as $item) {
+					$count += $item['qty'];
+				}
+
+				return $count;
 			}
 
 		// Iterator interface: Function to return the key of the current element
