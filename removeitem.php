@@ -17,9 +17,10 @@ require "item.php";
 	$i49 = new Item(49, "Spare tyre", 46.99);
 	$i22 = new Item(22, "Wrench", 3.00);
 
-// 
+// Get item to be removed from our cart
+	$item_id = $_GET['id'];
 
-$cart -> removeItem($i47);
+$cart -> removeItem($$item_id);
 
 // Store cart in our session
 	$_SESSION['cart'] = $cart;
