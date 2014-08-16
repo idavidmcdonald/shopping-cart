@@ -1,3 +1,7 @@
+<a href = "additem.php?id=i47">Add bike pump</a><br>
+<a href = "additem.php?id=i49">Add spare tyre</a><br>
+<a href = "additem.php?id=i22">Add wrench</a><br>
+
 <?php
 require "shoppingcart.php";
 require "item.php";
@@ -12,9 +16,9 @@ require "item.php";
 	}
 
 // Create some items
-	$i1 = new Item(47, "Bike pump", 14.99);
-	$i2 = new Item(49, "Spare tyre", 46.99);
-	$i3 = new Item(22, "Wrench", 3.00);
+	$i47 = new Item(47, "Bike pump", 14.99);
+	$i49 = new Item(49, "Spare tyre", 46.99);
+	$i22 = new Item(22, "Wrench", 3.00);
 
 // Output cart contents
 	if (!$cart -> isEmpty()) {
@@ -39,6 +43,8 @@ require "item.php";
 			        printf('<td><strong>%s</strong>: </td>', $item->getName());
 			        printf('<td>$%0.2f</td>', $item->getPrice());
 			        printf('<td>%d</td>', $arr['qty']);
+			        printf('<td><a href = "additem.php?id=i%s"> + </a></td>', $item->getId());
+			        printf('<td><a href = "removeitem.php?id=i%s"> - </a></td>', $item->getId());
 			        echo "</tr>";
 		    }
 

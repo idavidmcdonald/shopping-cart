@@ -13,11 +13,15 @@ require "item.php";
 	}
 
 // Create some items
-	$i1 = new Item(47, "Bike pump", 14.99);
-	$i2 = new Item(49, "Spare tyre", 46.99);
-	$i3 = new Item(22, "Wrench", 3.00);
+	$i47 = new Item(47, "Bike pump", 14.99);
+	$i49 = new Item(49, "Spare tyre", 46.99);
+	$i22 = new Item(22, "Wrench", 3.00);
 
-$cart -> addItem($i1);
+// Get item to be added to our cart
+	$item_id = $_GET['id'];
+
+// Add item to cart
+	$cart -> addItem($$item_id);
 
 // Store cart in our session
 	$_SESSION['cart'] = $cart;
