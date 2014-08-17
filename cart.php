@@ -1,7 +1,13 @@
-<a href = "additem.php?id=i47">Add bike pump</a><br>
-<a href = "additem.php?id=i49">Add spare tyre</a><br>
-<a href = "additem.php?id=i22">Add wrench</a><br>
+<!DOCTYPE html>
+<html>
+  	<head>
+	    <title>My Shopping Cart</title>
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+	</head>
 
+	<body>
+		
 <?php
 require "shoppingcart.php";
 require "item.php";
@@ -59,6 +65,9 @@ require "item.php";
 	}
 
 // Store cart in our session
-	$_SESSION['cart'] = $cart;
+	//$_SESSION['cart'] = $cart;
 
 ?>
+
+	</body>
+</html>
