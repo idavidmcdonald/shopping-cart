@@ -47,11 +47,16 @@ require "item.php";
 		        
 		        // Output item row
 			        echo "<tr>";
-			        printf('<td>%s </td>', $item->getName());
-			        printf('<td>$%0.2f</td>', $item->getPrice());
-					printf('<td>%d</td>', $arr['qty']);
-			        printf('<td><a href = "additem.php?id=i%s"><button type="button" class="btn btn-success"><b>+</b></button></a>', $item->getId());
-			        printf(' <a href = "removeitem.php?id=i%s"><button type="button" class="btn btn-danger"><b>-</b></button></a></td>', $item->getId());
+			        // Item name (as a link)
+			        	printf('<td><a href = "viewitem.php?id=i%d">%s</a></td>', $item->getId(), $item->getName());
+			        // Item price
+			        	printf('<td>$%0.2f</td>', $item->getPrice());
+			        // Item quantity
+						printf('<td>%d</td>', $arr['qty']);
+					// Add one item button
+			        	printf('<td><a href = "additem.php?id=i%s"><button type="button" class="btn btn-success"><b>+</b></button></a>', $item->getId());
+			        // Remove one item button
+			        	printf(' <a href = "removeitem.php?id=i%s"><button type="button" class="btn btn-danger"><b>-</b></button></a></td>', $item->getId());
 			        echo "</tr>";
 		    }
 
@@ -64,9 +69,6 @@ require "item.php";
 		// Empty cart heading
 			echo "<h2>Cart is empty</h2>";
 	}
-
-// Store cart in our session
-	//$_SESSION['cart'] = $cart;
 
 ?>
 
