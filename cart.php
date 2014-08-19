@@ -64,7 +64,8 @@ require "item.php";
 		    echo "<tr>";
 		    printf('<td><strong>Total: $%0.2f<strong></td>', $cart -> getTotal());
 		    echo "<td></td><td></td><td></td></tr>";
-		    echo "</table>";		    
+		    echo "</table>";
+		    echo '<button type="button" class="btn btn-primary">Checkout</button>';		    
 	} else {
 		// Empty cart heading
 			echo "<h2>Cart is empty</h2>";
