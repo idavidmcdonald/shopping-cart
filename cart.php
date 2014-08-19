@@ -7,7 +7,7 @@
 	</head>
 
 	<body>
-		
+		<div class = "container">	
 <?php
 require "shoppingcart.php";
 require "item.php";
@@ -32,11 +32,12 @@ require "item.php";
 			?>
 				<h2>Cart Contents (<?= count($cart) ?> items)</h2>
 
-				<table>
+				<table class = "table">
 					<tr>
 						<th>Item</th>
 						<th>Price</th>
-						<th>Quantity</th>
+						<th>Quantity</th>						
+						<th></th>
 					</tr>
 
 			<?
@@ -46,18 +47,18 @@ require "item.php";
 		        
 		        // Output item row
 			        echo "<tr>";
-			        printf('<td><strong>%s</strong>: </td>', $item->getName());
+			        printf('<td>%s </td>', $item->getName());
 			        printf('<td>$%0.2f</td>', $item->getPrice());
-			        printf('<td>%d</td>', $arr['qty']);
-			        printf('<td><a href = "additem.php?id=i%s"> + </a></td>', $item->getId());
-			        printf('<td><a href = "removeitem.php?id=i%s"> - </a></td>', $item->getId());
+					printf('<td>%d</td>', $arr['qty']);
+			        printf('<td><a href = "additem.php?id=i%s"><button type="button" class="btn btn-success"><b>+</b></button></a>', $item->getId());
+			        printf(' <a href = "removeitem.php?id=i%s"><button type="button" class="btn btn-danger"><b>-</b></button></a></td>', $item->getId());
 			        echo "</tr>";
 		    }
 
 		// Cart total
 		    echo "<tr>";
-		    printf('<td><strong>Total</strong>: $%0.2f </td>', $cart -> getTotal());
-		    echo "</tr>";
+		    printf('<td><strong>Total: $%0.2f<strong></td>', $cart -> getTotal());
+		    echo "<td></td><td></td><td></td></tr>";
 		    echo "</table>";		    
 	} else {
 		// Empty cart heading
@@ -69,5 +70,6 @@ require "item.php";
 
 ?>
 
+		</div>
 	</body>
 </html>
