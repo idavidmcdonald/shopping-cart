@@ -36,7 +36,7 @@ foreach ($catalogue -> getItems() as $item) {
       <img src = "placeholder.png" >
       <div class = "caption">
         <h3><?= $item -> getName() ?></h3>
-        <p><a href = "viewitem.php?id=i<?= $item -> getId() ?>" class = "btn btn-primary" role = "button">View</a></p>
+        <p><a href = "viewitem.php?id=<?= $item -> getId() ?>" class = "btn btn-primary" role = "button">View</a></p>
       </div>
     </div>
   </div>
