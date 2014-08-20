@@ -3,6 +3,8 @@ require "item.php";
 
 /**
 * Class for a catalogue to hold all the items in the store
+* The Catalogue class should implement Countable so that you can use count() on a catalogue.
+* The Catalogue class should implement Iterator so that you can loop through the catalogue's contents.
 */
 class Catalogue implements Countable, Iterator {
 	// Variable for all items in the catalogue
@@ -12,25 +14,25 @@ class Catalogue implements Countable, Iterator {
 		protected $position = 0;
 		protected $ids = array();
 
-	// Construct a new item
+	// Construct a new catalogue
 		function __construct() {
 			$mysqli = new mysqli("localhost", "root", "root", "STORE");
 
 			// Check connection
-			if ($mysqli -> connect_errno) {
-			    printf("Connect failed: %s\n", $mysqli -> connect_error);
-			    exit();
-			}
+				if ($mysqli -> connect_errno) {
+				    printf("Connect failed: %s\n", $mysqli -> connect_error);
+				    exit();
+				}
 
-			// Get array of all items
-			if ($result = $mysqli -> query("SELECT * FROM ITEMS")) {
-			    while ($item = $result -> fetch_assoc()) {
-			        $items[$item['ID']] = new Item($item['ID'], $item['NAME'], $item['PRICE']);
-			    	$this -> ids[] = $item['ID'];
-			    }
-			}
+			// Get array of all items from the database
+				if ($result = $mysqli -> query("SELECT * FROM ITEMS")) {
+				    while ($item = $result -> fetch_assoc()) {
+				        $items[$item['ID']] = new Item($item['ID'], $item['NAME'], $item['PRICE']);
+				    	$this -> ids[] = $item['ID'];
+				    }
+				}
 
-			$this -> items = $items;
+				$this -> items = $items;
 		}
 
 	// Function to check if an item exists in the catalogue based on its ID number. Returns the item if true
@@ -42,7 +44,7 @@ class Catalogue implements Countable, Iterator {
 				}
 			}
 
-	// $items array is protected so we implement Countable and Iterable interfaces for commonly used methods
+	// $items array is protected so we implement Countable and Iterable interfaces using the following methods
 		// Countable interface: Function to count number of items in our catalogue
 			public function count(){
 				return count($this -> items);

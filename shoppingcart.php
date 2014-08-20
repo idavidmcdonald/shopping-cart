@@ -2,6 +2,8 @@
 
 /**
 * Class to hold items that a user places in their shopping cart
+* The ShoppingCart class should implement Countable so that you can use count() on a shopping cart.
+* The ShoppingCart  class should implement Iterator so that you can loop through the cart's contents.
 */
 class ShoppingCart implements Countable, Iterator{ 
 	// The items in the shopping cart
@@ -10,12 +12,6 @@ class ShoppingCart implements Countable, Iterator{
 	// Variables for our iterator functions
 		protected $position = 0;
 		protected $ids = array();
-
-	// Construct a new shopping cart
-		function __construct()
-			{
-				$this -> items = array();
-			}
 
 	// Function that returns a boolean if the shopping cart is empty/notempty
 		public function isEmpty(){
@@ -104,7 +100,7 @@ class ShoppingCart implements Countable, Iterator{
 			return $total;			
 		}
 
-	// $items array is protected so we implement Countable and Iterable interfaces for commonly used methods
+	// $items array is protected so we implement Countable and Iterable interfaces using the following methods
 		// Countable interface: Function to count number of items in our cart
 			public function count(){
 				$count = 0;

@@ -1,7 +1,7 @@
 <?php
 
 /**
-* 
+* Class for an individual item in our store
 */
 class Item 
 {
