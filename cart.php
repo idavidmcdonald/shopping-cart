@@ -10,7 +10,7 @@
 		<div class = "container">	
 <?php
 require "shoppingcart.php";
-require "item.php";
+require "catalogue.php";
 
 // Start session. If session ShoppingCart exists, set as $cart variable. If not create a new instance of a ShoppingCart
 	session_start();
@@ -20,11 +20,6 @@ require "item.php";
 	} else {
 	    $cart = new ShoppingCart();
 	}
-
-// Create some items
-	$i47 = new Item(47, "Bike pump", 14.99);
-	$i49 = new Item(49, "Spare tyre", 46.99);
-	$i22 = new Item(22, "Wrench", 3.00);
 
 // Output cart contents
 	if (!$cart -> isEmpty()) {
@@ -48,15 +43,15 @@ require "item.php";
 		        // Output item row
 			        echo "<tr>";
 			        // Item name (as a link)
-			        	printf('<td><a href = "viewitem.php?id=i%d">%s</a></td>', $item->getId(), $item->getName());
+			        	printf('<td><a href = "viewitem.php?id=%d">%s</a></td>', $item->getId(), $item->getName());
 			        // Item price
 			        	printf('<td>$%0.2f</td>', $item->getPrice());
 			        // Item quantity
 						printf('<td>%d</td>', $arr['qty']);
 					// Add one item button
-			        	printf('<td><a href = "additem.php?id=i%s"><button type="button" class="btn btn-success"><b>+</b></button></a>', $item->getId());
+			        	printf('<td><a href = "additem.php?id=%s"><button type="button" class="btn btn-success"><b>+</b></button></a>', $item->getId());
 			        // Remove one item button
-			        	printf(' <a href = "removeitem.php?id=i%s"><button type="button" class="btn btn-danger"><b>-</b></button></a></td>', $item->getId());
+			        	printf(' <a href = "removeitem.php?id=%s"><button type="button" class="btn btn-danger"><b>-</b></button></a></td>', $item->getId());
 			        echo "</tr>";
 		    }
 

@@ -1,7 +1,7 @@
 <?php
 
 require "shoppingcart.php";
-require "item.php";
+require "catalogue.php";
 
 // Start session. If session ShoppingCart exists, set as $cart variable. If not create a new instance of a ShoppingCart
 	session_start();
@@ -12,16 +12,17 @@ require "item.php";
 	    $cart = new ShoppingCart();
 	}
 
-// Create some items
-	$i47 = new Item(47, "Bike pump", 14.99);
-	$i49 = new Item(49, "Spare tyre", 46.99);
-	$i22 = new Item(22, "Wrench", 3.00);
+// Create a new catalogue with all the stores items
+	$catalogue = new Catalogue();
 
-// Get item to be added to our cart
+// Get item ID from url
 	$item_id = $_GET['id'];
 
+// Return the item with matching ID number
+	$item = $catalogue -> ItemExists($item_id);
+
 // Add item to cart
-	$cart -> addItem($$item_id);
+	$cart -> addItem($item);
 
 // Store cart in our session
 	$_SESSION['cart'] = $cart;
