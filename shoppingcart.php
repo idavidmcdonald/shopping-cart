@@ -1,7 +1,7 @@
 <?php
 
 /**
-* 
+* Class to hold items that a user places in their shopping cart
 */
 class ShoppingCart implements Countable, Iterator{ 
 	// The items in the shopping cart

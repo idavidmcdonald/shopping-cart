@@ -28,7 +28,7 @@ echo '<div class = "row">';
 
 $catalogue = new Catalogue();
 
-foreach ($catalogue -> getItems() as $item) {
+foreach ($catalogue as $item) {
 	?>
 
   <div class = "col-sm-6 col-md-4">
