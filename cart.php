@@ -1,39 +1,22 @@
-<!DOCTYPE html>
-<html>
-  	<head>
-	    <title>My Shopping Cart</title>
-	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-	</head>
+<?php 
 
-	<body>
-		<div class = "container">	
-<?php
-require "shoppingcart.php";
-require "catalogue.php";
-
-// Start session. If session ShoppingCart exists, set as $cart variable. If not create a new instance of a ShoppingCart
-	session_start();
-	 
-	if (isset($_SESSION['cart'])) {
-	    $cart = $_SESSION['cart'];
-	} else {
-	    $cart = new ShoppingCart();
-	}
+// Store header
+	require 'header.php';
 
 // Output cart contents
 	if (!$cart -> isEmpty()) {
 		// Cart heading
 			?>
-				<h2>Cart Contents (<?= count($cart) ?> items)</h2>
+				<div class = "col-md-12">
+					<h2>Cart Contents (<?= count($cart) ?> items)</h2>
 
-				<table class = "table">
-					<tr>
-						<th>Item</th>
-						<th>Price</th>
-						<th>Quantity</th>						
-						<th></th>
-					</tr>
+					<table class = "table">
+						<tr>
+							<th>Item</th>
+							<th>Price</th>
+							<th>Quantity</th>						
+							<th></th>
+						</tr>
 
 			<?
 		// Cart contents
@@ -60,14 +43,15 @@ require "catalogue.php";
 		    printf('<td><strong>Total: $%0.2f<strong></td>', $cart -> getTotal());
 		    echo "<td></td><td></td><td></td></tr>";
 		    echo "</table>";
-		    echo '<button type="button" class="btn btn-primary">Checkout</button>';		    
+		    echo '<button type="button" class="btn btn-primary">Checkout</button>';	
+		    echo "</div>";	    
 	} else {
 		// Empty cart heading
+			echo "<div class = 'col-md-12'>";
 			echo "<h2>Cart is empty</h2>";
+			echo "</div>";
 	}
 
+// HTML store footer
+	require 'footer.html';
 ?>
-
-		</div>
-	</body>
-</html>
