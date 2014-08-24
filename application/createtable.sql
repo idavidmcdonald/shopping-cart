@@ -1,6 +1,0 @@
-CREATE TABLE IF NOT EXISTS `STORE`.`ITEMS` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `NAME` varchar(120) COLLATE utf8_unicode_ci NOT NULL,
-  `PRICE` float NOT NULL,
-  PRIMARY KEY (`ID`)
-);
