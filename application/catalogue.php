@@ -39,9 +39,9 @@ class Catalogue implements Countable, Iterator {
 		public function ItemExists($id) {
 				if (in_array($id, $this -> ids)) {
 					return $item = $this -> items[$id];
-				} else {
-					throw new Exception ('There is no item with this ID');
-				}
+				} 
+				// Return false is not found
+					return false;
 			}
 
 	// $items array is protected so we implement Countable and Iterable interfaces using the following methods

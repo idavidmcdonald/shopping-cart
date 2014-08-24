@@ -18,10 +18,11 @@ require "catalogue.php";
 // Get item ID from url
 	$item_id = $_GET['id'];
 
-// Return the item with matching ID number
-	$item = $catalogue -> ItemExists($item_id);
-
-$cart -> removeItem($item);
+// If the item exists in our catalogue then remove it from the cart
+	if ($item = $catalogue -> ItemExists($item_id)) {
+		// Remove item from cart
+			$cart -> removeItem($item);
+	}
 
 // Store cart in our session
 	$_SESSION['cart'] = $cart;

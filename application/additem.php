@@ -18,11 +18,11 @@ require "catalogue.php";
 // Get item ID from url
 	$item_id = $_GET['id'];
 
-// Return the item with matching ID number
-	$item = $catalogue -> ItemExists($item_id);
-
-// Add item to cart
-	$cart -> addItem($item);
+// If the item exists in our catalogue then add it to the cart
+	if ($item = $catalogue -> ItemExists($item_id)) {
+		// Add item to cart
+			$cart -> addItem($item);
+	}
 
 // Store cart in our session
 	$_SESSION['cart'] = $cart;
