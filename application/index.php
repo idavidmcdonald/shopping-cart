@@ -10,7 +10,7 @@
 		
 	  	<div class = "col-sm-6 col-md-4">
 	    	<div class = "thumbnail">
-	      		<img src = "assets/placeholder.png" >
+	      		<img src = "../public/assets/placeholder.png" >
 	      		<div class = "caption">
 	        		<h3>
 			        	<?= $item -> getName() ?>
