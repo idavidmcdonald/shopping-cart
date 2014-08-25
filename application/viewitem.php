@@ -34,6 +34,6 @@
 
 <?
 // HTML store footer
-	require 'footer.html';
+	require 'templates/footer.html';
 ?>
 

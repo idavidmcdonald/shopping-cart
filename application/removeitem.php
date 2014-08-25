@@ -1,7 +1,7 @@
 <?php
 
-require "shoppingcart.php";
-require "catalogue.php";
+require "classes/shoppingcart.php";
+require "classes/catalogue.php";
 
 // Start session. If session ShoppingCart exists, set as $cart variable. If not create a new instance of a ShoppingCart
 	session_start();
