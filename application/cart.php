@@ -31,13 +31,13 @@
 			        	<td>$<? printf('%0.2f', $item->getPrice()) ?></td>
 
 			        	<!-- Item quantity -->
-						<td><? printf('%d', $arr['qty'])?></td>
+						<td><?= $arr['qty'] ?></td>
 
 			        	<td> 
 			        		<!-- Add one item button -->
-			        		<? printf('<a href = "additem.php?id=%s">', $item->getId()) ?> <button type="button" class="btn btn-success"><b>+</b></button></a>
+			        		<a href = "additem.php?id=<?= $item -> getId() ?>"> <button type="button" class="btn btn-success"><b>+</b></button></a>
 			        		<!-- Remove one item button -->
-			        		<? printf('<a href = "removeitem.php?id=%s">', $item->getId()) ?> <button type="button" class="btn btn-danger"><b>-</b></button></a>
+			        		<a href = "removeitem.php?id=<?= $item -> getId() ?>"><button type="button" class="btn btn-danger"><b>-</b></button></a>
 			        	</td>
 			        </tr>
 
@@ -45,7 +45,7 @@
 
 			<!-- Cart Total -->
 		    <tr>
-		    	<td><strong>Total:<? printf(' $%0.2f<strong>', $cart -> getTotal()) ?></td>
+		    	<td><strong>Total: </strong><? printf('$%0.2f', $cart -> getTotal()) ?></td>
 		    	<td></td>
 		    	<td></td>
 		    	<td></td>
