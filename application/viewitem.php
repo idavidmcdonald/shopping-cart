@@ -1,6 +1,6 @@
 <?php 
 // Store header
-	require 'header.php';
+	require_once 'header.php';
 
 // Create a new catalogue with all the stores items
 	$catalogue = new Catalogue();
@@ -34,6 +34,6 @@
 
 <?
 // HTML store footer
-	require 'templates/footer.html';
+	require_once 'templates/footer.html';
 ?>
 

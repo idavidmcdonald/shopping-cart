@@ -1,11 +1,11 @@
 <?php
-require "item.php";
+require_once 'item.php';
 
 /**
-* Class for a catalogue to hold all the items in the store
-* The Catalogue class should implement Countable so that you can use count() on a catalogue.
-* The Catalogue class should implement Iterator so that you can loop through the catalogue's contents.
-*/
+ * Class for a catalogue to hold all the items in the store
+ * The Catalogue class should implement Countable so that you can use count() on a catalogue.
+ * The Catalogue class should implement Iterator so that you can loop through the catalogue's contents.
+ */
 class Catalogue implements Countable, Iterator {
 	// Variable for all items in the catalogue
 		protected $items = array();
@@ -14,7 +14,12 @@ class Catalogue implements Countable, Iterator {
 		protected $position = 0;
 		protected $ids = array();
 
-	// Construct a new catalogue
+
+	/**
+	 * Construct a new catalogue
+	 * Get all items from the database and insantiate them as Item instances in $this->items
+	 * Also add the items ID's to $this->ids
+	 */
 		function __construct() {
 			$mysqli = new mysqli("localhost", "root", "root", "STORE");
 
@@ -35,7 +40,12 @@ class Catalogue implements Countable, Iterator {
 				$this -> items = $items;
 		}
 
-	// Function to check if an item exists in the catalogue based on its ID number. Returns the item if true
+
+		/**
+		 * Check if an item exists in this catalogue using its ID number
+		 * @param int $id
+		 * @return boolean indicating if item does or does not exist
+		 */
 		public function ItemExists($id) {
 				if (in_array($id, $this -> ids)) {
 					return $item = $this -> items[$id];

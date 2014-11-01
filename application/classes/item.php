@@ -9,7 +9,13 @@ class Item
 	protected $name;
 	protected $price;
 
-	// Construct a new item
+
+	/**
+	 * Set the properties for our item
+	 * @param int $id
+	 * @param string $name
+	 * @param float $price
+	 */
 		function __construct($id, $name, $price)
 		{
 			$this -> id = $id;
@@ -18,21 +24,30 @@ class Item
 
 		}
 
-	// Function that returns an items ID
-		public function getId() {
-			return $this -> id;
-		}
+	/**
+	 * Get the ID for this item
+	 * @return int 
+	 */
+	public function getId() {
+		return $this -> id;
+	}
 
-	// Function that returns an items name
-		public function getName() {
-			return $this -> name;
-		}
 
-	// Function that returns an items price
-		public function getPrice() {
-			return $this -> price;
-		}
+	/**
+	 * Get the name for this item
+	 * @return string 
+	 */
+	public function getName() {
+		return $this -> name;
+	}
+
+
+	/**
+	 * Get the price of this item
+	 * @return float
+	 */
+	public function getPrice() {
+		return $this -> price;
+	}
 
 }
-
-?>

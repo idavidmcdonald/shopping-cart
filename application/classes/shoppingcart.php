@@ -1,10 +1,10 @@
 <?php
 
 /**
-* Class to hold items that a user places in their shopping cart
-* The ShoppingCart class should implement Countable so that you can use count() on a shopping cart.
-* The ShoppingCart  class should implement Iterator so that you can loop through the cart's contents.
-*/
+ * Class to hold items that a user places in their shopping cart
+ * The ShoppingCart class should implement Countable so that you can use count() on a shopping cart.
+ * The ShoppingCart class should implement Iterator so that you can loop through the cart's contents.
+ */
 class ShoppingCart implements Countable, Iterator{ 
 	// The items in the shopping cart
 		protected $items = array();
@@ -13,92 +13,117 @@ class ShoppingCart implements Countable, Iterator{
 		protected $position = 0;
 		protected $ids = array();
 
-	// Function that returns a boolean if the shopping cart is empty/notempty
+
+	/**
+	 * Return a boolean if the shopping cart is empty/notempty
+	 * @return boolean
+	 */
 		public function isEmpty(){
 			return (empty($this -> items));
 		}
 
-	// Function to add an item to the shopping card	
-		public function addItem(Item $item){
-			// Get the item id
-				$id = $item -> getId();
 
-			// Throw an exception if there is no id
-				if (!$id) throw new Exception ('The cart requires item with unique ID values');
+	/**
+	 * Add an item the shopping cart
+	 * @param Item $item
+	 */
+	public function addItem(Item $item){
+		// Get the item id
+			$id = $item -> getId();
 
-			// Update or add item in cart
-				if (isset($this -> items[$id])) {
-					// Update quantity of item
-						$this -> updateItem($item, $this -> items[$id]['qty'] + 1);
-				} else {
-					// Add item to cart
-						$this -> items[$id] = array('item' => $item,
-								                    'qty' => 1
-								                    );
-						$this -> ids[] = $id;
-				}
-		}
+		// Throw an exception if there is no id
+			if (!$id) throw new Exception ('The cart requires item with unique ID values');
 
-	// Function to remove one of an item from the shopping card	
-		public function removeItem(Item $item){
-			// Get the item id
-				$id = $item -> getId();
+		// Update or add item in cart
+			if (isset($this -> items[$id])) {
+				// Update quantity of item
+					$this -> updateItem($item, $this -> items[$id]['qty'] + 1);
+			} else {
+				// Add item to cart
+					$this -> items[$id] = array('item' => $item,
+							                    'qty' => 1
+							                    );
+					$this -> ids[] = $id;
+			}
+	}
 
-			// Throw an exception if there is no id
-				if (!$id) throw new Exception ('The cart requires item with unique ID values');
 
-			// Remove item from cart
-				if (isset($this -> items[$id])) {
-					// Update quantity of item
-						$this -> updateItem($item, $this -> items[$id]['qty'] - 1);
-				} 
-		}
+	/**
+	 * Remove one of an item from the shopping cart
+	 * @param  Item   $item
+	 */
+	public function removeItem(Item $item){
+		// Get the item id
+			$id = $item -> getId();
 
-	// Function to update the quantity of an item in the shopping cart
-		public function updateItem(Item $item, $qty){
-			// Get the item id
-				$id = $item -> getId();
+		// Throw an exception if there is no id
+			if (!$id) throw new Exception ('The cart requires item with unique ID values');
 
-			// Throw an exception if there is no id
-				if (!$id) throw new Exception ('The cart requires item with unique ID values');
+		// Remove item from cart
+			if (isset($this -> items[$id])) {
+				// Update quantity of item
+					$this -> updateItem($item, $this -> items[$id]['qty'] - 1);
+			} 
+	}
 
-			// Delete or update item quantity
-				if ($qty === 0) {
-					$this -> deleteItem($item);
-				} elseif (($qty > 0 ) AND ($qty != $this -> items[$id]['qty'])) {
-					$this -> items[$id]['qty'] = $qty;
-				}
-		}
 
-	// Function to remove all of an item from the shopping cart
-		public function deleteItem(Item $item){
-			// Get the item id
-				$id = $item -> getId();
+	/**
+	 * Update the quantity of an item in the shopping cart
+	 * @param  Item   $item
+	 * @param  int $qty
+	 */
+	public function updateItem(Item $item, $qty){
+		// Get the item id
+			$id = $item -> getId();
 
-			// Throw an exception if there is no id
-				if (!$id) throw new Exception ('The cart requires item with unique ID values');
+		// Throw an exception if there is no id
+			if (!$id) throw new Exception ('The cart requires item with unique ID values');
 
-			// Remove item from shopping cart
-				if (isset($this -> items[$id])) {
-					unset($this -> items[$id]);
-				}
+		// Delete or update item quantity
+			if ($qty === 0) {
+				$this -> deleteItem($item);
+			} elseif (($qty > 0 ) AND ($qty != $this -> items[$id]['qty'])) {
+				$this -> items[$id]['qty'] = $qty;
+			}
+	}
 
-				$index = array_search($id, $this -> ids);
-				unset($this -> ids[$index]);
-				$this -> ids = array_values($this -> ids);
-		}
 
-	// Function to calculate the total price of the shopping cart
-		public function getTotal(){
-			$total = 0;
+	/**
+	 * Remove all of item from the shopping cart, ie will remove multiple items with the same ID
+	 * @param  Item   $item
+	 */
+	public function deleteItem(Item $item){
+		// Get the item id
+			$id = $item -> getId();
 
-			foreach ($this -> items as $id) {
-							$subtotal = $id['qty'] * ($id['item'] -> getPrice());
-							$total += $subtotal;
-						}
+		// Throw an exception if there is no id
+			if (!$id) throw new Exception ('The cart requires item with unique ID values');
 
-			return $total;			
-		}
+		// Remove item from shopping cart
+			if (isset($this -> items[$id])) {
+				unset($this -> items[$id]);
+			}
+
+			$index = array_search($id, $this -> ids);
+			unset($this -> ids[$index]);
+			$this -> ids = array_values($this -> ids);
+	}
+
+
+	/**
+	 * Calculate and return the total price of the shopping cart
+	 * @return float the total price of the cart
+	 */
+	public function getTotal(){
+		$total = 0;
+
+		foreach ($this -> items as $id) {
+						$subtotal = $id['qty'] * ($id['item'] -> getPrice());
+						$total += $subtotal;
+					}
+
+		return $total;			
+	}
 
 	// $items array is protected so we implement Countable and Iterable interfaces using the following methods
 		// Countable interface: Function to count number of items in our cart
@@ -139,5 +164,3 @@ class ShoppingCart implements Countable, Iterator{
 			}
 
 }
-
-?>

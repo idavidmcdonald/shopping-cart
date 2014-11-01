@@ -1,6 +1,6 @@
 <?php 
 // Store header
-	require 'header.php';
+	require_once 'header.php';
 
 // Output all items in the catalogue
 	$catalogue = new Catalogue();
@@ -24,6 +24,6 @@
 	}
 
 // HTML store footer
-	require 'templates/footer.html';	
+	require_once 'templates/footer.html';	
 ?>
 
