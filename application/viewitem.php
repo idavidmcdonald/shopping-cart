@@ -9,14 +9,14 @@
 	$item_id = $_GET['id'];
 
 // Return the item with matching ID number
-	$item = $catalogue -> ItemExists($item_id);
+	$item = $catalogue->itemExists($item_id);
 
 // Output item details
 ?>
 <div class = "col-md-12">
 	<div class="panel panel-default">
   		<div class="panel-heading">
-    		<h3 class="panel-title"><?= $item -> getName() ?>
+    		<h3 class="panel-title"><?= $item->getName() ?>
     		<span class="panel-title pull-right"><? printf('$%0.2f', $item->getPrice()) ?></span></h3>
   		</div>
   		<div class="panel-body">
@@ -27,7 +27,7 @@
 
 				In hac habitasse platea dictumst. Vivamus eleifend lacinia mauris vel fermentum. Sed ac lacus sed mi tempus vehicula quis in sapien. Morbi a dapibus magna. Sed gravida molestie tempor. Mauris velit nisi, faucibus ac interdum eu, ultrices accumsan risus. Sed metus arcu, scelerisque non nibh eget, porttitor fermentum nulla.
   			</p>
-			<p><a href = "additem.php?id=<?= $item -> getId() ?>" class = "btn btn-primary" role = "button">Add to cart</a></p>
+			<p><a href = "additem.php?id=<?= $item->getId() ?>" class = "btn btn-primary" role = "button">Add to cart</a></p>
   		</div>
 	</div>
 </div>

@@ -7,14 +7,13 @@
 
 	foreach ($catalogue as $item) {
 		?>
-		
 	  	<div class = "col-sm-6 col-md-4">
 	    	<div class = "thumbnail">
 	      		<img src = "../public/assets/placeholder.png" >
 	      		<div class = "caption">
 	        		<h3>
-			        	<?= $item -> getName() ?>
-			        	<a href = "viewitem.php?id=<?= $item -> getId() ?>" class = "btn btn-primary pull-right" role = "button">View</a>
+			        	<?= $item->getName() ?>
+			        	<a href = "viewitem.php?id=<?= $item->getId() ?>" class = "btn btn-primary pull-right" role = "button">View</a>
 	    			</h3>
 	      		</div>
 	    	</div>

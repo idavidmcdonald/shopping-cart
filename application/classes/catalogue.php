@@ -24,20 +24,20 @@ class Catalogue implements Countable, Iterator {
 			$mysqli = new mysqli("localhost", "root", "root", "STORE");
 
 			// Check connection
-				if ($mysqli -> connect_errno) {
-				    printf("Connect failed: %s\n", $mysqli -> connect_error);
+				if ($mysqli->connect_errno) {
+				    printf("Connect failed: %s\n", $mysqli->connect_error);
 				    exit();
 				}
 
 			// Get array of all items from the database
-				if ($result = $mysqli -> query("SELECT * FROM ITEMS")) {
-				    while ($item = $result -> fetch_assoc()) {
+				if ($result = $mysqli->query("SELECT * FROM ITEMS")) {
+				    while ($item = $result->fetch_assoc()) {
 				        $items[$item['ID']] = new Item($item['ID'], $item['NAME'], $item['PRICE']);
-				    	$this -> ids[] = $item['ID'];
+				    	$this-> ids[] = $item['ID'];
 				    }
 				}
 
-				$this -> items = $items;
+				$this->items = $items;
 		}
 
 
@@ -46,9 +46,9 @@ class Catalogue implements Countable, Iterator {
 		 * @param int $id
 		 * @return boolean indicating if item does or does not exist
 		 */
-		public function ItemExists($id) {
-				if (in_array($id, $this -> ids)) {
-					return $item = $this -> items[$id];
+		public function itemExists($id) {
+				if (in_array($id, $this->ids)) {
+					return $item = $this->items[$id];
 				} 
 				// Return false is not found
 					return false;
@@ -57,33 +57,33 @@ class Catalogue implements Countable, Iterator {
 	// $items array is protected so we implement Countable and Iterable interfaces using the following methods
 		// Countable interface: Function to count number of items in our catalogue
 			public function count(){
-				return count($this -> items);
+				return count($this->items);
 			}
 
 		// Iterator interface: Function to return the key of the current element
 			public function key(){
-				return $this -> position;
+				return $this->position;
 			}
 
 		// Iterator interface: Function to move forward to the next element
 			public function next(){
-				$this -> position++;
+				$this->position++;
 			}
 
 		// Iterator interface: Function to rewind the iterator to the first element
 			public function rewind(){
-				$this -> position = 0;
+				$this->position = 0;
 			}
 
 		// Iterator interface: Function to check if the current position is valid
 			public function valid(){
-				return (isset($this -> ids[$this -> position]));
+				return (isset($this->ids[$this->position]));
 			}
 
 		// Iterable interface: Function to return the current item
 			public function current(){
-				$index = $this -> ids[$this -> position];
-				return $this -> items[$index];
+				$index = $this->ids[$this->position];
+				return $this->items[$index];
 			}
 
 }

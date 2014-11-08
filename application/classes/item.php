@@ -18,9 +18,9 @@ class Item
 	 */
 		function __construct($id, $name, $price)
 		{
-			$this -> id = $id;
-			$this -> name = $name;
-			$this -> price = $price;
+			$this->id = $id;
+			$this->name = $name;
+			$this->price = $price;
 
 		}
 
@@ -29,7 +29,7 @@ class Item
 	 * @return int 
 	 */
 	public function getId() {
-		return $this -> id;
+		return $this->id;
 	}
 
 
@@ -38,7 +38,7 @@ class Item
 	 * @return string 
 	 */
 	public function getName() {
-		return $this -> name;
+		return $this->name;
 	}
 
 
@@ -47,7 +47,7 @@ class Item
 	 * @return float
 	 */
 	public function getPrice() {
-		return $this -> price;
+		return $this->price;
 	}
 
 }

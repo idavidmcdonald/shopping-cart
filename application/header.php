@@ -12,15 +12,7 @@
 <?php
 require_once "classes/shoppingcart.php";
 require_once "classes/catalogue.php";
-
-// Start session. If session ShoppingCart exists, set as $cart variable. If not create a new instance of a ShoppingCart
-	session_start();
-	 
-	if (isset($_SESSION['cart'])) {
-	    $cart = $_SESSION['cart'];
-	} else {
-	    $cart = new ShoppingCart();
-	}
+require_once 'session.php';
 ?>
 
 <!-- Store header -->
@@ -30,7 +22,7 @@ require_once "classes/catalogue.php";
 			Welcome to the Store
 			<span class = "pull-right">
 				<a href = "index.php" class = "btn btn-primary" role = "button">Store Home</a>
-				<a href = "cart.php" class = "btn btn-primary" role = "button">View Cart (<?= $cart -> count() ?> items)</a>	 					
+				<a href = "cart.php" class = "btn btn-primary" role = "button">View Cart (<?= $cart->count() ?> items)</a>	 					
 			</span>
 		</h1>
 	</div>

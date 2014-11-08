@@ -19,7 +19,7 @@ class ShoppingCart implements Countable, Iterator{
 	 * @return boolean
 	 */
 		public function isEmpty(){
-			return (empty($this -> items));
+			return (empty($this->items));
 		}
 
 
@@ -29,21 +29,21 @@ class ShoppingCart implements Countable, Iterator{
 	 */
 	public function addItem(Item $item){
 		// Get the item id
-			$id = $item -> getId();
+			$id = $item->getId();
 
 		// Throw an exception if there is no id
 			if (!$id) throw new Exception ('The cart requires item with unique ID values');
 
 		// Update or add item in cart
-			if (isset($this -> items[$id])) {
+			if (isset($this->items[$id])) {
 				// Update quantity of item
-					$this -> updateItem($item, $this -> items[$id]['qty'] + 1);
+					$this->updateItem($item, $this->items[$id]['qty'] + 1);
 			} else {
 				// Add item to cart
-					$this -> items[$id] = array('item' => $item,
+					$this->items[$id] = array('item' => $item,
 							                    'qty' => 1
 							                    );
-					$this -> ids[] = $id;
+					$this->ids[] = $id;
 			}
 	}
 
@@ -54,15 +54,15 @@ class ShoppingCart implements Countable, Iterator{
 	 */
 	public function removeItem(Item $item){
 		// Get the item id
-			$id = $item -> getId();
+			$id = $item->getId();
 
 		// Throw an exception if there is no id
 			if (!$id) throw new Exception ('The cart requires item with unique ID values');
 
 		// Remove item from cart
-			if (isset($this -> items[$id])) {
+			if (isset($this->items[$id])) {
 				// Update quantity of item
-					$this -> updateItem($item, $this -> items[$id]['qty'] - 1);
+					$this->updateItem($item, $this->items[$id]['qty'] - 1);
 			} 
 	}
 
@@ -74,16 +74,16 @@ class ShoppingCart implements Countable, Iterator{
 	 */
 	public function updateItem(Item $item, $qty){
 		// Get the item id
-			$id = $item -> getId();
+			$id = $item->getId();
 
 		// Throw an exception if there is no id
 			if (!$id) throw new Exception ('The cart requires item with unique ID values');
 
 		// Delete or update item quantity
 			if ($qty === 0) {
-				$this -> deleteItem($item);
-			} elseif (($qty > 0 ) AND ($qty != $this -> items[$id]['qty'])) {
-				$this -> items[$id]['qty'] = $qty;
+				$this->deleteItem($item);
+			} elseif (($qty > 0 ) AND ($qty != $this->items[$id]['qty'])) {
+				$this->items[$id]['qty'] = $qty;
 			}
 	}
 
@@ -94,19 +94,19 @@ class ShoppingCart implements Countable, Iterator{
 	 */
 	public function deleteItem(Item $item){
 		// Get the item id
-			$id = $item -> getId();
+			$id = $item->getId();
 
 		// Throw an exception if there is no id
 			if (!$id) throw new Exception ('The cart requires item with unique ID values');
 
 		// Remove item from shopping cart
-			if (isset($this -> items[$id])) {
-				unset($this -> items[$id]);
+			if (isset($this->items[$id])) {
+				unset($this->items[$id]);
 			}
 
-			$index = array_search($id, $this -> ids);
-			unset($this -> ids[$index]);
-			$this -> ids = array_values($this -> ids);
+			$index = array_search($id, $this->ids);
+			unset($this->ids[$index]);
+			$this->ids = array_values($this->ids);
 	}
 
 
@@ -117,8 +117,8 @@ class ShoppingCart implements Countable, Iterator{
 	public function getTotal(){
 		$total = 0;
 
-		foreach ($this -> items as $id) {
-						$subtotal = $id['qty'] * ($id['item'] -> getPrice());
+		foreach ($this->items as $id) {
+						$subtotal = $id['qty'] * ($id['item']->getPrice());
 						$total += $subtotal;
 					}
 
@@ -130,7 +130,7 @@ class ShoppingCart implements Countable, Iterator{
 			public function count(){
 				$count = 0;
 
-				foreach ($this -> items as $item) {
+				foreach ($this->items as $item) {
 					$count += $item['qty'];
 				}
 
@@ -139,28 +139,28 @@ class ShoppingCart implements Countable, Iterator{
 
 		// Iterator interface: Function to return the key of the current element
 			public function key(){
-				return $this -> position;
+				return $this->position;
 			}
 
 		// Iterator interface: Function to move forward to the next element
 			public function next(){
-				$this -> position++;
+				$this->position++;
 			}
 
 		// Iterator interface: Function to rewind the iterator to the first element
 			public function rewind(){
-				$this -> position = 0;
+				$this->position = 0;
 			}
 
 		// Iterator interface: Function to check if the current position is valid
 			public function valid(){
-				return (isset($this -> ids[$this -> position]));
+				return (isset($this->ids[$this->position]));
 			}
 
 		// Iterable interface: Function to return the current item
 			public function current(){
-				$index = $this -> ids[$this -> position];
-				return $this -> items[$index];
+				$index = $this->ids[$this->position];
+				return $this->items[$index];
 			}
 
 }

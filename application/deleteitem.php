@@ -2,15 +2,7 @@
 
 require_once "classes/shoppingcart.php";
 require_once "classes/catalogue.php";
-
-// Start session. If session ShoppingCart exists, set as $cart variable. If not create a new instance of a ShoppingCart
-	session_start();
-	 
-	if (isset($_SESSION['cart'])) {
-	    $cart = $_SESSION['cart'];
-	} else {
-	    $cart = new ShoppingCart();
-	}
+require_once 'session.php';
 
 // Create a new catalogue with all the stores items
 	$catalogue = new Catalogue();
@@ -19,9 +11,9 @@ require_once "classes/catalogue.php";
 	$item_id = $_GET['id'];
 
 // If the item exists in our catalogue then delete it from the cart
-	if ($item = $catalogue -> ItemExists($item_id)) {
+	if ($item = $catalogue->itemExists($item_id)) {
 		// Delete item from cart
-			$cart -> deleteItem($item);
+			$cart->deleteItem($item);
 	}
 
 // Store cart in our session

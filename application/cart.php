@@ -4,7 +4,7 @@
 	require_once 'header.php';
 
 // Output cart contents
-	if (!$cart -> isEmpty()) {
+	if (!$cart->isEmpty()) {
 			?>
 				<!-- Cart Heading -->
 				<div class = "col-md-12">
@@ -35,9 +35,9 @@
 
 			        	<td> 
 			        		<!-- Add one item button -->
-			        		<a href = "additem.php?id=<?= $item -> getId() ?>"> <button type="button" class="btn btn-success"><b>+</b></button></a>
+			        		<a href = "additem.php?id=<?= $item->getId() ?>"> <button type="button" class="btn btn-success"><b>+</b></button></a>
 			        		<!-- Remove one item button -->
-			        		<a href = "removeitem.php?id=<?= $item -> getId() ?>"><button type="button" class="btn btn-danger"><b>-</b></button></a>
+			        		<a href = "removeitem.php?id=<?= $item->getId() ?>"><button type="button" class="btn btn-danger"><b>-</b></button></a>
 			        	</td>
 			        </tr>
 
@@ -45,7 +45,7 @@
 
 			<!-- Cart Total -->
 		    <tr>
-		    	<td><strong>Total: </strong><? printf('$%0.2f', $cart -> getTotal()) ?></td>
+		    	<td><strong>Total: </strong><? printf('$%0.2f', $cart->getTotal()) ?></td>
 		    	<td></td>
 		    	<td></td>
 		    	<td></td>
